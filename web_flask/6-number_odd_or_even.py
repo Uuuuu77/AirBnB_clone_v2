@@ -1,0 +1,59 @@
+#!/usr/bin/python3
+"""
+    Starts a flask web application.
+"""
+
+from flask import Flask
+
+app = Flask(__name__)
+
+
+@app.route('/', strict_slashes=False)
+def hello():
+    """ /: display “Hello HBNB!” """
+    return "Hello HBNB!"
+
+
+@app.route('/hbnb', strict_slashes=False)
+def hbnb():
+    """ /hbnb: display “HBNB” """
+    return "HBNB"
+
+
+@app.route('/c/<text>', strict_slashes=False)
+def c_text(text):
+    """ display c followed by <text> """
+    text = text.replace('_', ' ')
+    return f"C {text}"
+
+
+@app.route('/python/', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def python_text(text="is cool"):
+    """ display python followed by <text> """
+    text = text.replace('_', ' ')
+    return f"Python {text}"
+
+
+@app.route('/number/<int:n>', strict_slashes=False)
+def number(n):
+    """ display n is number if integer """
+    return f"{n} is a number"
+
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_templete(n):
+    """ display n is number if it's an integer """
+    return render_template('5-number.html' n=n)
+
+
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
+def number_odd_even(n):
+    """ display n is number if it's integer """
+    text = "even" if n % 2 == 0 else "odd"
+    return render_template('6-number_odd_or_even.html', n=n, text=text)
+
+
+if __name__ == "__main__":
+    """listening on 0.0.0.0, port 5000"""
+    app.run(host='0.0.0.0', port=5000, debug=True)
