@@ -3,7 +3,7 @@
     Starts a flask web application.
 """
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -44,7 +44,7 @@ def number(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_templete(n):
     """ display n is number if it's an integer """
-    return render_template('5-number.html' n=n)
+    return render_template('5-number.html', n=n)
 
 
 if __name__ == "__main__":
