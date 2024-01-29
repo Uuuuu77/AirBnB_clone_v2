@@ -42,7 +42,7 @@ def number(n):
 
 
 @app.route('/number_template/<int:n>', strict_slashes=False)
-def number_templete(n):
+def number_template(n):
     """ display n is number if it's an integer """
     return render_template('5-number.html', n=n)
 
